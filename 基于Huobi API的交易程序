@@ -1,0 +1,24 @@
+import huobi
+
+# 初始化API
+client = huobi.HuobiRestClient(api_key, api_secret)
+
+# 获取市场深度
+depth = client.market_depth('btcusdt')
+
+# 获取账户余额
+balance = client.account_balance()
+
+# 下单
+order = client.create_order(
+    'btcusdt',
+    'buy-limit',
+    price=50000,
+    amount=1
+)
+
+# 撤单
+client.cancel_order(order['data'][0]['order_id'])
+
+# 获取交易历史
+trades = client.get_history_orders('btcusdt')
